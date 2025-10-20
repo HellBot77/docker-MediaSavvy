@@ -7,11 +7,11 @@ RUN git clone https://github.com/MediaSavvy/MediaSavvy.git && \
     rm -rf .git && \
     rm -rf node_modules
 
-FROM node:alpine AS build
+FROM --platform=$BUILDPLATFORM node:alpine AS build
 
 WORKDIR /MediaSavvy
 COPY --from=base /git/MediaSavvy .
-RUN npm install && \
+RUN npm ci && \
     npm run docs:build
 
 FROM lipanski/docker-static-website
