@@ -7,7 +7,7 @@ RUN git clone https://github.com/MediaSavvy/MediaSavvy.git && \
     rm -rf .git && \
     rm -rf node_modules
 
-FROM --platform=$BUILDPLATFORM node:alpine AS build
+FROM --platform=$BUILDPLATFORM node AS build
 
 WORKDIR /MediaSavvy
 COPY --from=base /git/MediaSavvy .
